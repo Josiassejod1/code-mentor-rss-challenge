@@ -6,11 +6,15 @@ def process_args(argument)
     
   if valid_url?(argument) && argument.length > 1
     batch.push(argument)
+  else 
+    puts "valid urls not supplied"
   end
 
   batch.each do |url|
     parse_url(url)
   end
+
+ 
 end
 
 def valid_url?(url)
@@ -24,10 +28,7 @@ def parse_url(url)
     puts "Title: #{feed.channel.title}"
     puts "Description: #{feed.channel.description}"
     puts "Link: #{feed.channel.link}"
-
-    rescue RSS::Error
-      puts "Unknown RSS Error"
-   end
+  end
 
   rescue OpenURI::HTTPError 
     puts "Couldn't parse url"
